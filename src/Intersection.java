@@ -719,43 +719,6 @@ public class Intersection{
 	//	    };
 	//
 
-	public static void main(String[] args){
-
-//				Point2D a1 = new Point2D(0, 0);
-//				Point2D a2 = new Point2D(0.4, 0.4);
-//				Point2D a3 = new Point2D(0.6, 0.6);
-//				Point2D a4 = new Point2D(1, 1);
-//		
-//				Point2D b1 = new Point2D(0, 1);
-//				Point2D b2 = new Point2D(0.4, 0.6);
-//				Point2D b3 = new Point2D(0.6, 0.4);
-//				Point2D b4 = new Point2D(1, 0);
-
-		Point2D a1 = new Point2D(0, 0);
-		Point2D a2 = new Point2D(1, 0);
-		Point2D a3 = new Point2D(1, 1);
-		Point2D a4 = new Point2D(0, 1);
-
-		Point2D b1 = new Point2D(1, 0);
-		Point2D b2 = new Point2D(1, 1);
-		Point2D b3 = new Point2D(0, 1);
-		Point2D b4 = new Point2D(0, 0);
-
-//		Point2D a1 = new Point2D(0, 0);
-//		Point2D a2 = new Point2D(1, 0);
-//		Point2D a3 = new Point2D(2, 0);
-//		Point2D a4 = new Point2D(3, 0);
-//
-//		Point2D b1 = new Point2D(0, 0);
-//		Point2D b2 = new Point2D(0, 1);
-//		Point2D b3 = new Point2D(0, 2);
-//		Point2D b4 = new Point2D(0, 3);
-		
-		Intersection inter = intersectBezier3Bezier3(a1, a2, a3, a4, b1, b2, b3, b4);
-
-		System.out.println(inter.points + " " + inter.status);
-	}
-
 	/**
 	 *  intersectBezier3Bezier3
 	 *
@@ -1135,26 +1098,12 @@ public class Intersection{
 		double[] roots = poly.getRootsInInterval(0, 1);
 		roots = Utils.removeMultipleRootsIn01(roots);
 
-		for (int i = 0; i < roots.length; i++)
-			System.out.print(roots[i] + "|");
-		System.out.println();
-
 		for (int i = 0; i < roots.length; i++){
 			double s = roots[i];
 			double[] xRoots = new Polynomial(c13.x, c12.x, c11.x,
 					c10.x - c20.x - s * c21.x - s * s * c22.x - s * s * s * c23.x).getRoots();
 			double[] yRoots = new Polynomial(c13.y, c12.y, c11.y,
 					c10.y - c20.y - s * c21.y - s * s * c22.y - s * s * s * c23.y).getRoots();
-
-			System.out.println("xRoots:");
-			for (int j = 0; j < xRoots.length; j++)
-				System.out.print(xRoots[j] + "|");
-			System.out.println();
-
-			System.out.println("yRoots:");
-			for (int j = 0; j < yRoots.length; j++)
-				System.out.print(yRoots[j] + "|");
-			System.out.println();
 
 			if (xRoots.length > 0 && yRoots.length > 0) {
 				double TOLERANCE = 1e-4;
